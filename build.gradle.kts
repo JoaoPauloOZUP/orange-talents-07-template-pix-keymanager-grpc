@@ -6,7 +6,14 @@ plugins {
     id("io.micronaut.application") version "2.0.4"
     id("org.jetbrains.kotlin.plugin.allopen") version "1.5.21"
     id("com.google.protobuf") version "0.8.15"
+    id("org.jetbrains.kotlin.plugin.jpa") version "1.5.21"
+    id ("org.jetbrains.kotlin.plugin.noarg") version "1.5.21"
 }
+
+noArg {
+    annotation("javax.persistence.Entity")
+}
+
 
 version = "0.1"
 group = "br.com.zupacademy.joao"
@@ -36,8 +43,14 @@ dependencies {
 
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
 
-    testImplementation("io.micronaut:micronaut-http-client")
+    implementation("io.micronaut:micronaut-http-client")
+    implementation("org.hibernate:hibernate-validator:7.0.1.Final")
 
+    implementation("io.micronaut.data:micronaut-data-hibernate-jpa:1.0.2")
+    implementation("io.micronaut.sql:micronaut-jdbc-hikari")
+    runtimeOnly("org.postgresql:postgresql")
+    testImplementation("org.testcontainers:junit-jupiter")
+    testImplementation("org.testcontainers:postgresql")
 }
 
 

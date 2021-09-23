@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "br.com.zupacademy.joao";
+option java_outer_classname = "DesafioPix";
+
+package br.com.zupacademy.joao;
+
+service Pix {
+  rpc send (PixRequest) returns (PixResponse) {}
+}
+
+message PixRequest {
+  Cliente cliente = 1;
+  TipoChavePix tipoChave = 2;
+  TipoConta conta = 3;
+  string chave = 4;
+}
+
+message PixResponse {
+  Cliente cliente = 1;
+  string pixId = 2;
+}
+
+message Cliente {
+  string id = 1;
+}
+
+enum TipoChavePix {
+  DESCONHECIDO = 0;
+  CPF = 1;
+  EMAIL = 2;
+  CELULAR = 3;
+  ALEATORIO = 4;
+}
+
+enum TipoConta {
+  DESCONHECIDA = 0;
+  CONTA_CORRENTE = 1;
+  CONTA_POUPANCA = 2;
+}
+
+message BadRequest {
+  repeated FieldViolation fieldViolation = 1;
+}
+
+message FieldViolation {
+  string field = 1;
+  string description = 2;
+}

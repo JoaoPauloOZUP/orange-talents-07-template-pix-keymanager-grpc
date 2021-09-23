@@ -1,3 +1,30 @@
 micronaut:
   application:
     name: desafioPix
+
+datasources:
+  default:
+    url: jdbc:postgresql://localhost:5432/desafiopix
+    driverClassName: org.postgresql.Driver
+    username: root
+    password: root
+    dialect: POSTGRES
+
+grpc:
+  server:
+    port: '50051'
+    keep-alive-time: 1h
+    max-inbound-messa-size: 1024
+
+jpa:
+  default:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        hbm2ddl:
+          auto: create-drop
+
+erp:
+  contas:
+    url: 'http://localhost:9091'
