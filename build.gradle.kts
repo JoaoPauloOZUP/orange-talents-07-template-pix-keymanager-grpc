@@ -50,9 +50,19 @@ dependencies {
     implementation("io.micronaut.sql:micronaut-jdbc-hikari")
     runtimeOnly("org.postgresql:postgresql")
     testImplementation("org.testcontainers:junit-jupiter")
+    testImplementation("com.h2database:h2")
     testImplementation("org.testcontainers:postgresql")
-}
 
+    testAnnotationProcessor ("io.micronaut:micronaut-inject-java")
+    testImplementation("org.junit.jupiter:junit-jupiter-api")
+    testImplementation("io.micronaut.test:micronaut-test-junit5:3.0.2")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.2")
+    testImplementation("org.mockito:mockito-junit-jupiter:3.12.4")
+//    testImplementation("org.mockito.kotlin:mockito-kotlin:3.2.0")
+
+
+
+}
 
 application {
     mainClass.set("br.com.zupacademy.joao.ApplicationKt")

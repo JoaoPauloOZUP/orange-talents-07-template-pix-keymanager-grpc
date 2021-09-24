@@ -1,8 +1,10 @@
 package br.com.zupacademy.joao.grpcserver.function
 
 import br.com.zupacademy.joao.PixRequest
+import br.com.zupacademy.joao.RemovePixRequest
 import br.com.zupacademy.joao.TipoChavePix.DESCONHECIDO
-import br.com.zupacademy.joao.TipoConta.DESCONHECIDA
+import br.com.zupacademy.joao.TipoContaPix.DESCONHECIDA
+import br.com.zupacademy.joao.grpcserver.pix.dto.ChavePixRemoveRequest
 import br.com.zupacademy.joao.grpcserver.pix.utils.TipoChave
 import br.com.zupacademy.joao.grpcserver.pix.utils.TipoConta
 import br.com.zupacademy.joao.grpcserver.pix.dto.NovaChaveRequest
@@ -21,4 +23,8 @@ fun PixRequest.toModel(): NovaChaveRequest {
         },
         chave = chave
     )
+}
+
+fun RemovePixRequest.toModel(): ChavePixRemoveRequest {
+    return ChavePixRemoveRequest(chavePix, clienteId)
 }

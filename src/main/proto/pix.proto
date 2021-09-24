@@ -6,14 +6,18 @@ option java_outer_classname = "DesafioPix";
 
 package br.com.zupacademy.joao;
 
-service Pix {
-  rpc send (PixRequest) returns (PixResponse) {}
+service PixService {
+  rpc cadastrar (PixRequest) returns (PixResponse) {}
+}
+
+service PixRemoveService {
+  rpc remover(RemovePixRequest) returns (RemovePixResponse) {}
 }
 
 message PixRequest {
   Cliente cliente = 1;
   TipoChavePix tipoChave = 2;
-  TipoConta conta = 3;
+  TipoContaPix conta = 3;
   string chave = 4;
 }
 
@@ -34,7 +38,7 @@ enum TipoChavePix {
   ALEATORIO = 4;
 }
 
-enum TipoConta {
+enum TipoContaPix {
   DESCONHECIDA = 0;
   CONTA_CORRENTE = 1;
   CONTA_POUPANCA = 2;
@@ -47,4 +51,14 @@ message BadRequest {
 message FieldViolation {
   string field = 1;
   string description = 2;
+}
+
+message RemovePixRequest {
+  string chavePix = 1;
+  string clienteId = 2;
+}
+
+message RemovePixResponse {
+  string chavePix = 1;
+  string clienteId = 2;
 }

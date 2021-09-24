@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank
 class Cliente(
     @field:NotBlank
     @Column(nullable = false)
-    private val clientId: String,
+    val clientId: String,
 
     @field:NotBlank
     @Column(nullable = false)

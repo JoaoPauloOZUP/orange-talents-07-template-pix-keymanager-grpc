@@ -22,7 +22,7 @@ class Conta(
     private val numero: String,
 
     @field:NotBlank
-    private val titular: Cliente
+    val titular: Cliente
 ) {
 
 }

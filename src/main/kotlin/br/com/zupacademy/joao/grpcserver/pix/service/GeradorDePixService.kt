@@ -23,17 +23,20 @@ class GeradorDePixService(
 
     fun cadastrar(@Valid novaChaveRequest: NovaChaveRequest): ChavePix {
         if(repository.existsByChavePix(novaChaveRequest.chave)) {
+            logger.info("Chave existente")
             throw ChaveExisteException("Chave já existente")
         }
 
         val conta = try {
             clientItau.consultaConta(novaChaveRequest.clienteId, novaChaveRequest.tipoConta!!.name).toConta()
         } catch (httpException: HttpException) {
+            logger.info("Cliente não encontrado")
             throw IllegalStateException("Cliente não encontrado")
         }
 
         val chavePix = novaChaveRequest.toChavePix(conta)
         repository.save(chavePix)
+        logger.info("Pix salvo")
 
         return chavePix;
     }
