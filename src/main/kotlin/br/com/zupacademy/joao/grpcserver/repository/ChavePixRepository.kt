@@ -10,6 +10,6 @@ import java.util.*
 interface ChavePixRepository : JpaRepository<ChavePix, Long> {
     fun existsByChavePix(chave: String): Boolean
     @Query("SELECT * FROM chave_pix as c WHERE c.chave_pix = :chavePix AND c.client_id = :clientId", nativeQuery = true)
-    fun existsByChavePixAndClientId(chavePix: String, clientId: String): Optional<ChavePix>
+    fun findByChavePixAndClientId(chavePix: String, clientId: String): Optional<ChavePix>
     fun findByChavePix(chavePix: String): Optional<ChavePix>
 }

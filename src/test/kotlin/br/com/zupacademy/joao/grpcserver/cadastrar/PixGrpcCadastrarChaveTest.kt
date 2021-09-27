@@ -1,4 +1,5 @@
-package br.com.zupacademy.joao
+package br.com.zupacademy.joao.grpcserver.cadastrar
+import br.com.zupacademy.joao.*
 import br.com.zupacademy.joao.grpcserver.model.ChavePix
 import br.com.zupacademy.joao.grpcserver.pix.client.ClientErpItau
 import br.com.zupacademy.joao.grpcserver.pix.client.dto.ClienteInput
@@ -23,7 +24,7 @@ import org.mockito.Mockito.`when`
 import java.util.*
 
 @MicronautTest(transactional = false)
-class DesafioPixTest(
+class PixGrpcCadastrarChaveTest(
     val grpcClient: PixServiceGrpc.PixServiceBlockingStub,
     val repository: ChavePixRepository,
     val erpItau: ClientErpItau

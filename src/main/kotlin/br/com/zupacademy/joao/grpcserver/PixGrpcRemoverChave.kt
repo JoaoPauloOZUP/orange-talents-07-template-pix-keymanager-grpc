@@ -29,7 +29,7 @@ class PixGrpcRemoverChave(
         } catch (e: IllegalStateException) {
             logger.error(e.message)
 
-            statusRuntimeException("Chave pix não encontrada", Status.INVALID_ARGUMENT)
+            statusRuntimeException("Chave pix não encontrada", Status.NOT_FOUND)
                 .run { responseObserver?.onError(this) }
         } catch (e: Exception) {
             logger.error("Erro inesperado")

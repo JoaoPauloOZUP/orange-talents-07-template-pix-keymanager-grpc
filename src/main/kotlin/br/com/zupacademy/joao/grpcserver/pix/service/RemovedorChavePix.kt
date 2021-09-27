@@ -16,11 +16,9 @@ class RemovedorChavePix(
 
     fun remover(@Valid request: ChavePixRemoveRequest): ChavePix {
         with(request) {
-            if(repository.existsByChavePixAndClientId(chavePix, clientId).isEmpty) {
-                throw IllegalStateException("Chave inexistente")
-            }
+            val pix = repository.findByChavePixAndClientId(chavePix, clientId)
+                .orElseThrow { throw IllegalStateException("Chave inexistente") }
 
-            val pix = repository.findByChavePix(chavePix).get()
             repository.delete(pix)
             return pix
         }
