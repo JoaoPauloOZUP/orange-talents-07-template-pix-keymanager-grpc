@@ -45,7 +45,7 @@ internal class PixGrpcRemoverChaveTest(
     @Test
     fun `deve excluir a chave quando for existente`() {
         val request = RemovePixRequest.newBuilder()
-            .setChavePix("12181027056")
+            .setChavePix("03593304015")
             .setClienteId(CLIENT_ID_ONE)
             .build()
 
@@ -119,14 +119,14 @@ internal class PixGrpcRemoverChaveTest(
         return listOf(
             ContaInput(
                 tipo = "CONTA_CORRENTE",
-                instituicao =  InstituicaoInput("UNIBANCO ITAU SA", "000"),
+                instituicao =  InstituicaoInput("UNIBANCO ITAU SA", "60701190"),
                 agencia = "1218",
                 numero = "1090",
                 titular = ClienteInput(CLIENT_ID_ONE, "03593304015", "Joao")
             ),
             ContaInput(
                 tipo = "CONTA_CORRENTE",
-                instituicao =  InstituicaoInput("UNIBANCO ITAU SA", "010"),
+                instituicao =  InstituicaoInput("UNIBANCO ITAU SA", "60701190"),
                 agencia = "1418",
                 numero = "1190",
                 titular = ClienteInput(CLIENT_ID_TWO, "54767608066", "José")
