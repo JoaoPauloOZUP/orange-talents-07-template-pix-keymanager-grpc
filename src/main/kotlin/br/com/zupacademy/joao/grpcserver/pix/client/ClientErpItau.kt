@@ -1,6 +1,6 @@
 package br.com.zupacademy.joao.grpcserver.pix.client
 
-import br.com.zupacademy.joao.grpcserver.pix.client.dto.ContaInput
+import br.com.zupacademy.joao.grpcserver.pix.client.cliente.dto.ContaInput
 import io.micronaut.http.annotation.Get
 import io.micronaut.http.annotation.PathVariable
 import io.micronaut.http.annotation.QueryValue

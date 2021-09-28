@@ -13,7 +13,7 @@ class Cliente(
 
     @field:NotBlank
     @Column(nullable = false)
-    private val nomeTitular: String,
+    val nomeTitular: String,
 
     @field:CPF
     @Column(nullable = false)

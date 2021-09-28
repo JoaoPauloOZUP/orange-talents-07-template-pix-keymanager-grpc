@@ -3,9 +3,9 @@ package br.com.zupacademy.joao.grpcserver.remover
 import br.com.zupacademy.joao.PixRemoveServiceGrpc
 import br.com.zupacademy.joao.RemovePixRequest
 import br.com.zupacademy.joao.grpcserver.model.ChavePix
-import br.com.zupacademy.joao.grpcserver.pix.client.dto.ClienteInput
-import br.com.zupacademy.joao.grpcserver.pix.client.dto.ContaInput
-import br.com.zupacademy.joao.grpcserver.pix.client.dto.InstituicaoInput
+import br.com.zupacademy.joao.grpcserver.pix.client.cliente.dto.ClienteInput
+import br.com.zupacademy.joao.grpcserver.pix.client.cliente.dto.ContaInput
+import br.com.zupacademy.joao.grpcserver.pix.client.cliente.dto.InstituicaoInput
 import br.com.zupacademy.joao.grpcserver.repository.ChavePixRepository
 import io.grpc.ManagedChannel
 import io.grpc.Status

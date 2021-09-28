@@ -33,7 +33,7 @@ class PixGrpcCadastrarChave(
             statusRuntimeException(e.message, Status.ALREADY_EXISTS)
                 .run { responseObserver?.onError(this) }
         } catch (e: IllegalStateException) {
-            logger.error("Cliente não encontrado ${novaChave?.clienteId}")
+            logger.error(e.message)
 
             statusRuntimeException(e.message!!, Status.INVALID_ARGUMENT)
                 .run { responseObserver?.onError(this) }

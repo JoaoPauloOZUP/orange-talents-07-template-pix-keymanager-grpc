@@ -12,7 +12,7 @@ class Instituicao(
 
     @field:NotBlank
     @Column(nullable = false)
-    private val ispb: String
+    val ispb: String
 ) {
 
 }

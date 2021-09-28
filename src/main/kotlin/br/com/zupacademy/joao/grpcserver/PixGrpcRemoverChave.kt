@@ -20,6 +20,7 @@ class PixGrpcRemoverChave(
 
     private val logger = LoggerFactory.getLogger(PixGrpcRemoverChave::class.java)
 
+
     override fun remover(request: RemovePixRequest?, responseObserver: StreamObserver<RemovePixResponse>?) {
         logger.info("Iniciando remoção chave pix ${request?.chavePix}")
 
@@ -29,7 +30,7 @@ class PixGrpcRemoverChave(
         } catch (e: IllegalStateException) {
             logger.error(e.message)
 
-            statusRuntimeException("Chave pix não encontrada", Status.NOT_FOUND)
+            statusRuntimeException(e.message!! , Status.NOT_FOUND)
                 .run { responseObserver?.onError(this) }
         } catch (e: Exception) {
             logger.error("Erro inesperado")

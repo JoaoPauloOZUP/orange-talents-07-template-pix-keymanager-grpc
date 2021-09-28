@@ -9,13 +9,16 @@ class ChavePix(
     tipoChave: String,
     conta: Conta
 ) {
+    fun atualizar(key: String) {
+        chavePix = key
+    }
 
     @Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
     val id: Long? = null
 
-    @NotBlank
+//    @NotBlank
     @Column(nullable = false, unique = true, length = 77)
-    val chavePix = chavePix
+    var chavePix = chavePix
 
     @NotBlank
     @Column(nullable = false)

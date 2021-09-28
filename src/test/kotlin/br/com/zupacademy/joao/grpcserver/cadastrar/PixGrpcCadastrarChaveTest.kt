@@ -2,10 +2,10 @@ package br.com.zupacademy.joao.grpcserver.cadastrar
 import br.com.zupacademy.joao.*
 import br.com.zupacademy.joao.grpcserver.model.ChavePix
 import br.com.zupacademy.joao.grpcserver.pix.client.ClientErpItau
-import br.com.zupacademy.joao.grpcserver.pix.client.dto.ClienteInput
-import br.com.zupacademy.joao.grpcserver.pix.client.dto.ContaInput
-import br.com.zupacademy.joao.grpcserver.pix.client.dto.InstituicaoInput
-import br.com.zupacademy.joao.grpcserver.pix.utils.TipoChave
+import br.com.zupacademy.joao.grpcserver.pix.client.cliente.dto.ClienteInput
+import br.com.zupacademy.joao.grpcserver.pix.client.cliente.dto.ContaInput
+import br.com.zupacademy.joao.grpcserver.pix.client.cliente.dto.InstituicaoInput
+import br.com.zupacademy.joao.grpcserver.pix.util.TipoChave
 import br.com.zupacademy.joao.grpcserver.repository.ChavePixRepository
 import io.grpc.ManagedChannel
 import io.grpc.Status

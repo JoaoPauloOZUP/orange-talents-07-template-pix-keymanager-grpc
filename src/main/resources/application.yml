@@ -28,3 +28,7 @@ jpa:
 erp:
   contas:
     url: 'http://localhost:9091'
+
+bcb:
+  cadastrar-pix:
+    url: 'http://localhost:8082'

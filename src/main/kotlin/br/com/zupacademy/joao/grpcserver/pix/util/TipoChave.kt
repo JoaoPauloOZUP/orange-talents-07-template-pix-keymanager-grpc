@@ -1,4 +1,4 @@
-package br.com.zupacademy.joao.grpcserver.pix.utils
+package br.com.zupacademy.joao.grpcserver.pix.util
 
 
 import org.hibernate.validator.internal.constraintvalidators.hv.EmailValidator

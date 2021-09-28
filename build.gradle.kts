@@ -40,28 +40,23 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
     runtimeOnly("ch.qos.logback:logback-classic")
     implementation("io.micronaut:micronaut-validation")
-
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
-
     implementation("io.micronaut:micronaut-http-client")
     implementation("org.hibernate:hibernate-validator:7.0.1.Final")
-
     implementation("io.micronaut.data:micronaut-data-hibernate-jpa:1.0.2")
     implementation("io.micronaut.sql:micronaut-jdbc-hikari")
     runtimeOnly("org.postgresql:postgresql")
     testImplementation("org.testcontainers:junit-jupiter")
     testImplementation("com.h2database:h2")
     testImplementation("org.testcontainers:postgresql")
-
+//    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.9.10")
+    implementation("io.micronaut.xml:micronaut-jackson-xml")
     testAnnotationProcessor ("io.micronaut:micronaut-inject-java")
     testImplementation("org.junit.jupiter:junit-jupiter-api")
     testImplementation("io.micronaut.test:micronaut-test-junit5:3.0.2")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.2")
     testImplementation("org.mockito:mockito-junit-jupiter:3.12.4")
 //    testImplementation("org.mockito.kotlin:mockito-kotlin:3.2.0")
-
-
-
 }
 
 application {

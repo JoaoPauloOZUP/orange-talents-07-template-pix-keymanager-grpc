@@ -5,8 +5,8 @@ import br.com.zupacademy.joao.RemovePixRequest
 import br.com.zupacademy.joao.TipoChavePix.DESCONHECIDO
 import br.com.zupacademy.joao.TipoContaPix.DESCONHECIDA
 import br.com.zupacademy.joao.grpcserver.pix.dto.ChavePixRemoveRequest
-import br.com.zupacademy.joao.grpcserver.pix.utils.TipoChave
-import br.com.zupacademy.joao.grpcserver.pix.utils.TipoConta
+import br.com.zupacademy.joao.grpcserver.pix.util.TipoChave
+import br.com.zupacademy.joao.grpcserver.pix.util.TipoConta
 import br.com.zupacademy.joao.grpcserver.pix.dto.NovaChaveRequest
 
 
