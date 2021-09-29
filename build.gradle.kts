@@ -64,6 +64,7 @@ application {
 }
 java {
     sourceCompatibility = JavaVersion.toVersion("11")
+    targetCompatibility = JavaVersion.toVersion("11")
 }
 
 tasks {

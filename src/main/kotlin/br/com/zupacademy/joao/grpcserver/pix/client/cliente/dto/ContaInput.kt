@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank
 @Introspected
 class ContaInput(
     @field:NotBlank
-    private val tipo: String,
+    val tipo: String,
 
     @field:NonNull
     private val instituicao: InstituicaoInput,

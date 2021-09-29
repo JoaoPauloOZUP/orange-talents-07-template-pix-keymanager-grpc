@@ -3,6 +3,9 @@ package br.com.zupacademy.joao.grpcserver.remover
 import br.com.zupacademy.joao.PixRemoveServiceGrpc
 import br.com.zupacademy.joao.RemovePixRequest
 import br.com.zupacademy.joao.grpcserver.model.ChavePix
+import br.com.zupacademy.joao.grpcserver.pix.client.ClientBancoCentralBrasil
+import br.com.zupacademy.joao.grpcserver.pix.client.cadastropix.dto.ExcluirPixInput
+import br.com.zupacademy.joao.grpcserver.pix.client.cadastropix.dto.ExcuirPixOut
 import br.com.zupacademy.joao.grpcserver.pix.client.cliente.dto.ClienteInput
 import br.com.zupacademy.joao.grpcserver.pix.client.cliente.dto.ContaInput
 import br.com.zupacademy.joao.grpcserver.pix.client.cliente.dto.InstituicaoInput
@@ -13,18 +16,24 @@ import io.grpc.StatusRuntimeException
 import io.micronaut.context.annotation.Factory
 import io.micronaut.grpc.annotation.GrpcChannel
 import io.micronaut.grpc.server.GrpcServerChannel
+import io.micronaut.http.HttpResponse
+import io.micronaut.http.HttpStatus
+import io.micronaut.test.annotation.MockBean
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest
 import jakarta.inject.Singleton
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.mockito.Mockito
+import org.mockito.Mockito.`when`
 import java.util.*
 
 @MicronautTest(transactional = false)
 internal class PixGrpcRemoverChaveTest(
     var grpcCliente: PixRemoveServiceGrpc.PixRemoveServiceBlockingStub,
-    var repository: ChavePixRepository
+    var repository: ChavePixRepository,
+    var clientBcb: ClientBancoCentralBrasil
 ) {
 
     companion object {
@@ -44,6 +53,9 @@ internal class PixGrpcRemoverChaveTest(
 
     @Test
     fun `deve excluir a chave quando for existente`() {
+        `when`(clientBcb.remover("03593304015", ExcuirPixOut(listChavePix().get(0))))
+            .thenReturn(HttpResponse.ok(excluirPixInput("03593304015")))
+
         val request = RemovePixRequest.newBuilder()
             .setChavePix("03593304015")
             .setClienteId(CLIENT_ID_ONE)
@@ -60,6 +72,10 @@ internal class PixGrpcRemoverChaveTest(
 
     @Test
     fun `deve lancar excecao quando chave não existir`() {
+        `when`(clientBcb.remover("00099988877", ExcuirPixOut(listChavePix().get(0))))
+            .thenReturn(HttpResponse.notFound())
+
+
         val request = RemovePixRequest.newBuilder()
             .setChavePix("00099988877")
             .setClienteId(CLIENT_ID_ONE)
@@ -71,12 +87,15 @@ internal class PixGrpcRemoverChaveTest(
 
         with(throws) {
             assertEquals(Status.NOT_FOUND.code, status.code)
-            assertEquals("Chave pix não encontrada", status.description)
+            assertEquals("Chave não encontrada", status.description)
         }
     }
 
     @Test
     fun `a chave so deve ser removida pelo o dono da chave`() {
+        `when`(clientBcb.remover("00099988877", ExcuirPixOut(listChavePix().get(0))))
+            .thenReturn(HttpResponse.status(HttpStatus.FORBIDDEN))
+
         val request = RemovePixRequest.newBuilder()
             .setChavePix("54767608066")
             .setClienteId(CLIENT_ID_ONE)
@@ -88,7 +107,7 @@ internal class PixGrpcRemoverChaveTest(
 
         with(throws) {
             assertEquals(Status.NOT_FOUND.code, status.code)
-            assertEquals("Chave pix não encontrada", status.description)
+            assertEquals("Chave não encontrada", status.description)
         }
     }
 
@@ -99,6 +118,13 @@ internal class PixGrpcRemoverChaveTest(
         fun blokingStub(@GrpcChannel(GrpcServerChannel.NAME) channel: ManagedChannel ) =
             PixRemoveServiceGrpc.newBlockingStub(channel)
     }
+
+    @MockBean(ClientBancoCentralBrasil::class)
+    fun bcbClient() = Mockito.mock(ClientBancoCentralBrasil::class.java)
+
+    fun excluirPixOut(chavePix: ChavePix) = ExcuirPixOut(chavePix)
+
+    fun excluirPixInput(key: String) = ExcluirPixInput(key = key, participant = "60701190")
 
     fun listChavePix(): List<ChavePix> {
         return listOf (

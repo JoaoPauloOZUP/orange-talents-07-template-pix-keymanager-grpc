@@ -8,13 +8,13 @@ import javax.validation.constraints.NotBlank
 @Introspected
 class ClienteInput(
     @field:NotBlank
-    private val id: String,
+    val id: String,
 
     @field:CPF
     private val cpf: String,
 
     @field:NotBlank
-    private val nome: String
+    val nome: String
 ) {
     fun toCliente(): Cliente {
         return Cliente(id,nome,cpf)

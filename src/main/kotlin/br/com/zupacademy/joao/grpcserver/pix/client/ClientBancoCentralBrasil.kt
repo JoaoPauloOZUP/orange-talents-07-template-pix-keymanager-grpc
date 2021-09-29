@@ -1,6 +1,5 @@
 package br.com.zupacademy.joao.grpcserver.pix.client
 
-import br.com.zupacademy.joao.grpcserver.model.ChavePix
 import br.com.zupacademy.joao.grpcserver.pix.client.cadastropix.dto.CadastroPixOut
 import br.com.zupacademy.joao.grpcserver.pix.client.cadastropix.dto.CadastroPixInput
 import br.com.zupacademy.joao.grpcserver.pix.client.cadastropix.dto.ExcluirPixInput
@@ -14,7 +13,7 @@ import io.micronaut.http.client.annotation.Client
 interface ClientBancoCentralBrasil {
 
     @Post(value = "/api/v1/pix/keys")
-    @Produces(value =  [MediaType.APPLICATION_XML])
+    @Produces(value = [MediaType.APPLICATION_XML])
     @Consumes(value = [MediaType.APPLICATION_XML])
     fun cadastrarPixBcb(@Body cadastroPixOut: CadastroPixOut): HttpResponse<CadastroPixInput>
 
