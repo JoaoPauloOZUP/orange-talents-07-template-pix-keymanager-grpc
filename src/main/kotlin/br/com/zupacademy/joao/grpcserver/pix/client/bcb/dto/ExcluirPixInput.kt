@@ -1,4 +1,4 @@
-package br.com.zupacademy.joao.grpcserver.pix.client.cadastropix.dto
+package br.com.zupacademy.joao.grpcserver.pix.client.bcb.dto
 
 class ExcluirPixInput(
     val key: String,

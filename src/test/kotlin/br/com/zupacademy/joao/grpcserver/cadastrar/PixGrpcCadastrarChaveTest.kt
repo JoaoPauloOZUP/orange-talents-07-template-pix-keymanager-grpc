@@ -4,14 +4,14 @@ import br.com.zupacademy.joao.*
 import br.com.zupacademy.joao.grpcserver.model.ChavePix
 import br.com.zupacademy.joao.grpcserver.pix.client.ClientBancoCentralBrasil
 import br.com.zupacademy.joao.grpcserver.pix.client.ClientErpItau
-import br.com.zupacademy.joao.grpcserver.pix.client.cadastropix.dto.CadastroClientInput
-import br.com.zupacademy.joao.grpcserver.pix.client.cadastropix.dto.CadastroContaInput
-import br.com.zupacademy.joao.grpcserver.pix.client.cadastropix.dto.CadastroPixInput
-import br.com.zupacademy.joao.grpcserver.pix.client.cadastropix.dto.CadastroPixOut
-import br.com.zupacademy.joao.grpcserver.pix.client.cadastropix.util.TipoContaBcb
-import br.com.zupacademy.joao.grpcserver.pix.client.cliente.dto.ClienteInput
-import br.com.zupacademy.joao.grpcserver.pix.client.cliente.dto.ContaInput
-import br.com.zupacademy.joao.grpcserver.pix.client.cliente.dto.InstituicaoInput
+import br.com.zupacademy.joao.grpcserver.pix.client.bcb.dto.PixClientInput
+import br.com.zupacademy.joao.grpcserver.pix.client.bcb.dto.PixContaInput
+import br.com.zupacademy.joao.grpcserver.pix.client.bcb.dto.PixInput
+import br.com.zupacademy.joao.grpcserver.pix.client.bcb.dto.CadastroPixOut
+import br.com.zupacademy.joao.grpcserver.pix.client.bcb.util.TipoContaBcb
+import br.com.zupacademy.joao.grpcserver.pix.client.client.dto.ClienteInput
+import br.com.zupacademy.joao.grpcserver.pix.client.client.dto.ContaInput
+import br.com.zupacademy.joao.grpcserver.pix.client.client.dto.InstituicaoInput
 import br.com.zupacademy.joao.grpcserver.pix.util.TipoChave
 import br.com.zupacademy.joao.grpcserver.repository.ChavePixRepository
 import io.grpc.ManagedChannel
@@ -303,17 +303,17 @@ class PixGrpcCadastrarChaveTest(
         )
     }
 
-    fun cadastroPixInput(param: String): CadastroPixInput {
-        return CadastroPixInput(
+    fun cadastroPixInput(param: String): PixInput {
+        return PixInput(
             keyType = TipoContaBcb.valueOf(contaInput().tipo).converter() ,
             key = if(param == null || param.isBlank()) UUID.randomUUID().toString() else param,
-            bankAccount = CadastroContaInput(
+            bankAccount = PixContaInput(
                 participant = "60701190",
                 branch = "0001",
                 accountNumber = "123456",
                 accountType = TipoContaBcb.valueOf(contaInput().tipo).converter()
             ),
-            owner = CadastroClientInput(
+            owner = PixClientInput(
                 type = "NATURAL_PERSON",
                 name = contaInput().titular.nome,
                 taxIdNumber = contaInput().titular.id

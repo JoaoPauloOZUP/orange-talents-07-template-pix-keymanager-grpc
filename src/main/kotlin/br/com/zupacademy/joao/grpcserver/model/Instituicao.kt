@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank
 class Instituicao(
     @field:NotBlank
     @Column(nullable = false)
-    private val nome: String,
+    val nome: String,
 
     @field:NotBlank
     @Column(nullable = false)

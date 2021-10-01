@@ -1,4 +1,4 @@
-package br.com.zupacademy.joao.grpcserver.pix.client.cadastropix.util
+package br.com.zupacademy.joao.grpcserver.pix.client.bcb.util
 
 enum class TipoContaBcb {
     CONTA_CORRENTE {

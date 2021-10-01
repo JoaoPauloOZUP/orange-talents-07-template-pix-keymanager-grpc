@@ -1,8 +1,8 @@
-package br.com.zupacademy.joao.grpcserver.pix.client.cadastropix.dto
+package br.com.zupacademy.joao.grpcserver.pix.client.bcb.dto
 
 import br.com.zupacademy.joao.grpcserver.model.ChavePix
 
-class ExcuirPixOut(
+class ExcluirPixOut(
     val key: String,
 
     val participant: String

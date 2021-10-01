@@ -2,7 +2,7 @@ package br.com.zupacademy.joao.grpcserver.pix.service
 
 import br.com.zupacademy.joao.grpcserver.model.ChavePix
 import br.com.zupacademy.joao.grpcserver.pix.client.ClientBancoCentralBrasil
-import br.com.zupacademy.joao.grpcserver.pix.client.cadastropix.dto.ExcuirPixOut
+import br.com.zupacademy.joao.grpcserver.pix.client.bcb.dto.ExcluirPixOut
 import br.com.zupacademy.joao.grpcserver.pix.dto.ChavePixRemoveRequest
 import br.com.zupacademy.joao.grpcserver.repository.ChavePixRepository
 import io.micronaut.http.exceptions.HttpException
@@ -14,7 +14,7 @@ import javax.validation.Valid
 
 @Validated
 @Singleton
-class RemovedorChavePix(
+class RemovedorChavePixService(
     val repository: ChavePixRepository,
     val clientBcb: ClientBancoCentralBrasil
 ) {
@@ -26,7 +26,7 @@ class RemovedorChavePix(
                 .orElseThrow { throw IllegalStateException("Chave não encontrada") }
 
             try {
-                clientBcb.remover(chavePix, ExcuirPixOut(pix))
+                clientBcb.remover(chavePix, ExcluirPixOut(pix))
             } catch (httpException: HttpException) {
                 throw IllegalStateException("Chave pix não excluida")
             }

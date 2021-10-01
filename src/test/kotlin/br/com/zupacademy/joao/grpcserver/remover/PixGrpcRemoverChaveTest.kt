@@ -4,11 +4,11 @@ import br.com.zupacademy.joao.PixRemoveServiceGrpc
 import br.com.zupacademy.joao.RemovePixRequest
 import br.com.zupacademy.joao.grpcserver.model.ChavePix
 import br.com.zupacademy.joao.grpcserver.pix.client.ClientBancoCentralBrasil
-import br.com.zupacademy.joao.grpcserver.pix.client.cadastropix.dto.ExcluirPixInput
-import br.com.zupacademy.joao.grpcserver.pix.client.cadastropix.dto.ExcuirPixOut
-import br.com.zupacademy.joao.grpcserver.pix.client.cliente.dto.ClienteInput
-import br.com.zupacademy.joao.grpcserver.pix.client.cliente.dto.ContaInput
-import br.com.zupacademy.joao.grpcserver.pix.client.cliente.dto.InstituicaoInput
+import br.com.zupacademy.joao.grpcserver.pix.client.bcb.dto.ExcluirPixInput
+import br.com.zupacademy.joao.grpcserver.pix.client.bcb.dto.ExcluirPixOut
+import br.com.zupacademy.joao.grpcserver.pix.client.client.dto.ClienteInput
+import br.com.zupacademy.joao.grpcserver.pix.client.client.dto.ContaInput
+import br.com.zupacademy.joao.grpcserver.pix.client.client.dto.InstituicaoInput
 import br.com.zupacademy.joao.grpcserver.repository.ChavePixRepository
 import io.grpc.ManagedChannel
 import io.grpc.Status
@@ -53,7 +53,7 @@ internal class PixGrpcRemoverChaveTest(
 
     @Test
     fun `deve excluir a chave quando for existente`() {
-        `when`(clientBcb.remover("03593304015", ExcuirPixOut(listChavePix().get(0))))
+        `when`(clientBcb.remover("03593304015", ExcluirPixOut(listChavePix().get(0))))
             .thenReturn(HttpResponse.ok(excluirPixInput("03593304015")))
 
         val request = RemovePixRequest.newBuilder()
@@ -72,7 +72,7 @@ internal class PixGrpcRemoverChaveTest(
 
     @Test
     fun `deve lancar excecao quando chave não existir`() {
-        `when`(clientBcb.remover("00099988877", ExcuirPixOut(listChavePix().get(0))))
+        `when`(clientBcb.remover("00099988877", ExcluirPixOut(listChavePix().get(0))))
             .thenReturn(HttpResponse.notFound())
 
 
@@ -93,7 +93,7 @@ internal class PixGrpcRemoverChaveTest(
 
     @Test
     fun `a chave so deve ser removida pelo o dono da chave`() {
-        `when`(clientBcb.remover("00099988877", ExcuirPixOut(listChavePix().get(0))))
+        `when`(clientBcb.remover("00099988877", ExcluirPixOut(listChavePix().get(0))))
             .thenReturn(HttpResponse.status(HttpStatus.FORBIDDEN))
 
         val request = RemovePixRequest.newBuilder()
@@ -122,7 +122,7 @@ internal class PixGrpcRemoverChaveTest(
     @MockBean(ClientBancoCentralBrasil::class)
     fun bcbClient() = Mockito.mock(ClientBancoCentralBrasil::class.java)
 
-    fun excluirPixOut(chavePix: ChavePix) = ExcuirPixOut(chavePix)
+    fun excluirPixOut(chavePix: ChavePix) = ExcluirPixOut(chavePix)
 
     fun excluirPixInput(key: String) = ExcluirPixInput(key = key, participant = "60701190")
 

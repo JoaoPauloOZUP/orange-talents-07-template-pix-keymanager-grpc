@@ -6,7 +6,7 @@ import br.com.zupacademy.joao.RemovePixResponse
 import br.com.zupacademy.joao.grpcserver.function.statusRuntimeException
 import br.com.zupacademy.joao.grpcserver.function.toModel
 import br.com.zupacademy.joao.grpcserver.model.ChavePix
-import br.com.zupacademy.joao.grpcserver.pix.service.RemovedorChavePix
+import br.com.zupacademy.joao.grpcserver.pix.service.RemovedorChavePixService
 import io.grpc.Status
 import io.grpc.stub.StreamObserver
 import jakarta.inject.Singleton
@@ -15,7 +15,7 @@ import java.lang.IllegalStateException
 
 @Singleton
 class PixGrpcRemoverChave(
-    private val removedorChavePix: RemovedorChavePix
+    private val removedorChavePixService: RemovedorChavePixService
 ) : PixRemoveServiceGrpc.PixRemoveServiceImplBase() {
 
     private val logger = LoggerFactory.getLogger(PixGrpcRemoverChave::class.java)
@@ -26,7 +26,7 @@ class PixGrpcRemoverChave(
 
         val removeChave = request?.toModel()
         val remocao = try {
-            removedorChavePix.remover(removeChave!!)
+            removedorChavePixService.remover(removeChave!!)
         } catch (e: IllegalStateException) {
             logger.error(e.message)
 

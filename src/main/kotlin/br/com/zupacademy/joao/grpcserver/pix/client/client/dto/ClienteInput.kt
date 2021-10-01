@@ -1,4 +1,4 @@
-package br.com.zupacademy.joao.grpcserver.pix.client.cliente.dto
+package br.com.zupacademy.joao.grpcserver.pix.client.client.dto
 
 import br.com.zupacademy.joao.grpcserver.model.Cliente
 import io.micronaut.core.annotation.Introspected

@@ -16,7 +16,6 @@ class ChavePix(
     @Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
     val id: Long? = null
 
-//    @NotBlank
     @Column(nullable = false, unique = true, length = 77)
     var chavePix = chavePix
 

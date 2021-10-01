@@ -4,8 +4,7 @@ import br.com.zupacademy.joao.grpcserver.pix.client.ClientErpItau
 import br.com.zupacademy.joao.grpcserver.exception.ChaveExisteException
 import br.com.zupacademy.joao.grpcserver.model.ChavePix
 import br.com.zupacademy.joao.grpcserver.pix.client.ClientBancoCentralBrasil
-import br.com.zupacademy.joao.grpcserver.pix.client.cadastropix.dto.CadastroPixInput
-import br.com.zupacademy.joao.grpcserver.pix.client.cadastropix.dto.CadastroPixOut
+import br.com.zupacademy.joao.grpcserver.pix.client.bcb.dto.CadastroPixOut
 import br.com.zupacademy.joao.grpcserver.repository.ChavePixRepository
 import br.com.zupacademy.joao.grpcserver.pix.dto.NovaChaveRequest
 import io.micronaut.http.exceptions.HttpException
@@ -45,12 +44,12 @@ class GeradorDePixService(
         logger.info("Pix salvo")
 
         val responseBcb = try {
-            val seila = clientBcb.cadastrarPixBcb(CadastroPixOut(chavePix))
+            clientBcb.cadastrarPixBcb(CadastroPixOut(chavePix))
         } catch (httpException: HttpException) {
             throw IllegalStateException("Pix não criado")
         }
 
-//        chavePix.atualizar(responseBcb?.key)
+        chavePix.atualizar(responseBcb.body()!!.key)
         logger.info("Pix atualizado")
 
         return chavePix;

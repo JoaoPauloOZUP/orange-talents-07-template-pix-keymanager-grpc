@@ -1,7 +1,7 @@
-package br.com.zupacademy.joao.grpcserver.pix.client.cadastropix.dto
+package br.com.zupacademy.joao.grpcserver.pix.client.bcb.dto
 
 import br.com.zupacademy.joao.grpcserver.model.Conta
-import br.com.zupacademy.joao.grpcserver.pix.client.cadastropix.util.TipoContaBcb
+import br.com.zupacademy.joao.grpcserver.pix.client.bcb.util.TipoContaBcb
 
 class CadastroContaOut(
     val participant: String,

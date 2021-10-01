@@ -5,6 +5,7 @@ option java_package = "br.com.zupacademy.joao";
 option java_outer_classname = "DesafioPix";
 
 package br.com.zupacademy.joao;
+import "google/protobuf/timestamp.proto";
 
 service PixService {
   rpc cadastrar (PixRequest) returns (PixResponse) {}
@@ -12,6 +13,10 @@ service PixService {
 
 service PixRemoveService {
   rpc remover(RemovePixRequest) returns (RemovePixResponse) {}
+}
+
+service PixConsultarService {
+  rpc consultar(ConsultaPixRequest) returns (ConsultaPixResponse) {}
 }
 
 message PixRequest {
@@ -62,3 +67,37 @@ message RemovePixResponse {
   string chavePix = 1;
   string clienteId = 2;
 }
+
+message Conta {
+  TipoContaPix tipo = 1;
+  string agencia = 2;
+  string numero = 3;
+}
+
+message Instituicao {
+  string nome = 1;
+  string ispb = 2;
+}
+
+message ConsultaPixRequest {
+  message FiltroPixId {
+    string chavePix = 1;
+    string clienteId = 2;
+  }
+
+  oneof filtro {
+    FiltroPixId pixId = 1;
+    string chave = 2;
+  }
+}
+
+message ConsultaPixResponse {
+  string chavePix = 1;
+  TipoChavePix tipo = 3;
+  string clienteId = 2;
+  string nomeTitular = 5;
+  Conta conta = 6;
+  Instituicao instituicao = 7;
+  google.protobuf.Timestamp criadaEm = 8;
+}
+
